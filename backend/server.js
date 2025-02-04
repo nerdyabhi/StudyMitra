@@ -7,6 +7,13 @@ app.use(cors());
 app.use(express.json());
 app.use(urlencoded({extends:false}));
 
+
+/* @Routes  */
+
+app.use('/user' , userRoutes)
+
+
+/** Last Basic code*/
 app.get('/' , (req , res)=>{
     res.send("Hello world ! Study Mitra")
 })
