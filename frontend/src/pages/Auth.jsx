@@ -59,9 +59,11 @@ const Auth = () => {
         }
         else if(registerError ){
           toast.error(registerError?.data?.message || "Sign Up Failed!");
+          navigate("/auth");
         }
         else if(loginError ){
           toast.error(loginError.data?.message || "Login In Falied!");
+          navigate("/auth");
         }
         else if(isLoginSuccess && loginData){
           toast.success(loginData?.message || "Login successful!");

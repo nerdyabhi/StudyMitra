@@ -50,7 +50,7 @@ router.post('/login', async(req , res)=>{
     const {email , password} = req.body;
     const user = await userModel.findOne({email}).select('+password');
     if(!user){
-        return res.status(200).json({ success:false , message:"No user Exists : kindly login"});
+        return res.status(401).json({ success:false , message:"No user Exists : kindly login"});
     }
 
     const isMatch  = await checkPassword(password , user.password);
