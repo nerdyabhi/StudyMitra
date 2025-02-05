@@ -11,3 +11,6 @@
 
 ## AI logic and Design 
 ![alt text](./assets/SchemaAndDataFlow.png)
+
+## AI File Structure  :
+![alt text](./assets/FileStructure.png)
