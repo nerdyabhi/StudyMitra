@@ -9,7 +9,7 @@ export const  generateAuthToken = async(payload)=>{
     return token;
 }
 
-export const decodeToken = async(token)=>{
-    const decoded = jwt.verify(token , secret);
+export const decodeToken = (token)=>{
+    const decoded = jwt.verify(token , jwtSecret);
     return decoded;
 }

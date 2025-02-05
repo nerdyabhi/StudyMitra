@@ -1,6 +1,5 @@
 import express from 'express'
 const router = express.Router();
-import jwt from 'jsonwebtoken'
 
 import { userModel } from '../models/user.model.js';
 import { checkPassword, hashPassword } from '../utils/hashPassword.js';
@@ -8,6 +7,7 @@ import { checkPassword, hashPassword } from '../utils/hashPassword.js';
 
 import { userLoginSchema, userSignupSchema } from '../utils/userValidationSchema.js';
 import { generateAuthToken } from '../utils/jwt.js';
+import { authUser } from '../middleware/auth.js';
 
 /* @POST /user/signup  */
 router.post('/signup' , async(req , res)=>{
@@ -28,7 +28,7 @@ router.post('/signup' , async(req , res)=>{
             avatarUrl:avatarUrl?avatarUrl:"https://nerdyabhi.github.io/Cara/img/logo.png"
         })
 
-        const token = generateAuthToken({ fullName: user.fullName, email: user.email });
+        const token = await generateAuthToken({ id:user._id , fullName: user.fullName, email: user.email });
         res.status(200).json({success:true , user , token});
     } catch (e) {
         if (e.code === 11000 && e.keyPattern && e.keyPattern.email) {
@@ -59,9 +59,15 @@ router.post('/login', async(req , res)=>{
     }
     delete user.password;
 
-    const token = await generateAuthToken({fullName:user.fullName, email:user.email})
+    const token =  await generateAuthToken({id:user._id ,fullName:user.fullName, email:user.email})
     res.status(200).json({token , user });
 })
 
+
+router.get('/profile' ,authUser , async(req , res)=>{
+        const user = req.user;
+        delete user.password;
+        res.status(200).json({success:true , message:"Successfully found the user" , user});
+})
 
 export default router;
