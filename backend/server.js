@@ -6,7 +6,13 @@ import userRoutes from './routes/userRoutes.js'
 import mongoose from 'mongoose';
 import connectToDB from './utils/dbConnection.js';
 // Main Middle-ware 
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:5173",
+    methods: ["PUT", "GET", "DELETE", "POST", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+}));
+
 app.use(express.json());
 app.use(urlencoded({extends:false}));
 

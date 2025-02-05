@@ -14,11 +14,12 @@ import { Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
+import { useLoginUserMutation, useRegisterUserMutation } from "@/apis/authApi";
 
 const Auth = () => {
 
     const [signUpInput, setSignUpInput] = useState({
-        name: "",
+        fullName: "",
         email: "",
         password: "",
       });
@@ -28,6 +29,48 @@ const Auth = () => {
         password: "",
       });
 
+      const [
+        registerUser,
+        {
+          data: registerData,
+          error: registerError,
+          isLoading: isRegisterLoading,
+          isSuccess: isRegisterSuccess,
+        },
+      ] = useRegisterUserMutation();
+      
+     
+
+      const [
+        loginUser,
+        {
+          data: loginData,
+          error: loginError,
+          isLoading: isLoginLoading,
+          isSuccess: isLoginSuccess,
+        },
+      ] = useLoginUserMutation();
+    
+      const navigate = useNavigate();
+      useEffect(()=>{
+        if(isRegisterSuccess && registerData){
+          toast.success(registerData?.message || "User sign-up successful!");
+          navigate("/");
+        }
+        else if(registerError ){
+          toast.error(registerError?.data?.message || "Sign Up Failed!");
+        }
+        else if(loginError ){
+          toast.error(loginError.data?.message || "Login In Falied!");
+        }
+        else if(isLoginSuccess && loginData){
+          toast.success(loginData?.message || "Login successful!");
+          navigate("/")
+        }
+      },
+      [
+        isLoginLoading,isRegisterLoading,loginData,registerData,loginError, registerError
+      ])
       
   const changeInputHandler = (e, type) => {
     const { name, value } = e.target;
@@ -41,20 +84,18 @@ const Auth = () => {
   const buttonHandler = async (type) => {
     const inputData = type === "signUp" ? signUpInput : signInInput;
     const action = type ==="signUp" ? registerUser : loginUser;
+    console.log(inputData);
     await action(inputData);
     setSignInInput({
       email: "",
       password: "",
     });
     setSignUpInput({
-      name: "",
+      fullName: "",
       email: "",
       password: "",
     });
   };
-
-      const isRegisterLoading = false;
-      const isLoginLoading = false;
 
   return (
     <div className="flex items-center justify-center mt-28">
@@ -73,13 +114,13 @@ const Auth = () => {
             </CardHeader>
             <CardContent className="space-y-2">
               <div className="space-y-1">
-                <Label htmlFor="name">Name</Label>
+                <Label htmlFor="fullName">Name</Label>
                 <Input
-                  id="name"
-                  value={signUpInput.name}
+                  id="fullName"
+                  value={signUpInput.fullName}
                   onChange={(e) => changeInputHandler(e, "signUp")}
                   placeholder="Enter Your Name"
-                  name="name"
+                  name="fullName"
                 />
               </div>
               <div className="space-y-1">
