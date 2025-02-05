@@ -1,15 +1,18 @@
-import { useState } from 'react'
-import { Button } from './components/ui/button'
+import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import SignUp from './pages/SignUp';
 
+const appRouter = createBrowserRouter([
+  {
+    path: "/auth",
+    element: <SignUp />,
+  }
+]);
 
 function App() {
-
   return (
-    <>
-      <h1 className='text-red-500'>Hello world abhi sharma!</h1>
-      
-    </>
-  )
+    <RouterProvider router={appRouter} />
+  );
 }
 
-export default App
+export default App;
