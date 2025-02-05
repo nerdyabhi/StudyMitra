@@ -3,14 +3,14 @@ const router = express.Router();
 import jwt from 'jsonwebtoken'
 
 import { userModel } from '../models/user.model.js';
-import { hashPassword } from '../utils/hashPassword.js';
+import { checkPassword, hashPassword } from '../utils/hashPassword.js';
 
 
-import { userSignupSchema } from '../utils/userValidationSchema.js';
+import { userLoginSchema, userSignupSchema } from '../utils/userValidationSchema.js';
 import { generateAuthToken } from '../utils/jwt.js';
+
+/* @POST /user/signup  */
 router.post('/signup' , async(req , res)=>{
-    console.log(req.body);
-    
     const result = userSignupSchema.safeParse(req.body);
     if(!result.success){
         res.status(400).json({success:false , message:"Please send valid data"});
@@ -37,6 +37,30 @@ router.post('/signup' , async(req , res)=>{
             res.status(500).json({ success: false, message: "An error occurred", error: e.message });
         }
     }
+})
+
+/* @POST /user/login  */
+router.post('/login', async(req , res)=>{
+    const result = userLoginSchema.safeParse(req.body);
+    if(!result.success){
+        res.status(400).json({success:false , message:"Please send valid data"});
+        return;
+    }
+
+    const {email , password} = req.body;
+    const user = await userModel.findOne({email}).select('+password');
+    if(!user){
+        return res.status(200).json({ success:false , message:"No user Exists : kindly login"});
+    }
+
+    const isMatch  = await checkPassword(password , user.password);
+    if(!isMatch){
+        return res.status(401).json({message:"Invalid Password Try again "});
+    }
+    delete user.password;
+
+    const token = await generateAuthToken({fullName:user.fullName, email:user.email})
+    res.status(200).json({token , user });
 })
 
 

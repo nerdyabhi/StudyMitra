@@ -4,7 +4,7 @@ dotenv.config();
 
 const jwtSecret = process.env.JWT_SECRET;
 
-export const generateAuthToken = async(payload)=>{
+export const  generateAuthToken = async(payload)=>{
     const token = jwt.sign(payload , jwtSecret);
     return token;
 }
