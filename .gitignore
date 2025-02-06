@@ -4,3 +4,8 @@
 .env
 venv
 chroma_db
+Editor.jsx
+EditorTheme.jsx
+ImagePlugin.jsx
+Toolbar.jsx
+RT_Editor.jsx
