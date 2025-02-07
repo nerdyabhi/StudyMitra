@@ -3,8 +3,8 @@ const app = express();
 import cors from 'cors';
 
 import userRoutes from './routes/userRoutes.js'
-import mongoose from 'mongoose';
 import connectToDB from './utils/dbConnection.js';
+import aiRouter from './routes/aiRoutes.js'
 // Main Middle-ware 
 app.use(cors({
     origin: "http://localhost:5173",
@@ -21,6 +21,8 @@ connectToDB();
 /* @Routes  */
 
 app.use('/user' , userRoutes);
+app.use('/ai' , aiRouter)
+
 
 
 /** Last Basic code*/

@@ -2,6 +2,7 @@ import { ChromaClient } from "chromadb";
 import axios from "axios";
 import dotenv from "dotenv";
 
+
 dotenv.config();
 
 const CHROMA_URL = process.env.CHROMA_URL || "http://localhost:8000"; // Update if needed
@@ -19,39 +20,48 @@ export const getCollection = async () => {
 };
 
 // Function to add documents (text chunks) with embeddings
-export const addDocuments = async (docs) => {
-  try {
-    const collection = await getCollection();
-    const ids = docs.map((_, index) => `doc_${Date.now()}_${index}`);
-    
-    // Get embeddings from OpenAI/Groq
-    const embeddings = await Promise.all(docs.map(getEmbeddings));
-    
-    await collection.add({ ids, documents: docs, embeddings });
-    console.log("Documents added successfully!");
-  } catch (error) {
-    console.error("Error adding documents:", error);
-  }
-};
+export const addDocuments = async (docs, userId, fileId) => {
+    try {
+      const collection = await getCollection();
+      const ids = docs.map((_, index) => `doc_${Date.now()}_${index}`);
+  
+      // Get embeddings for each chunk
+      const embeddings = await Promise.all(docs.map(getEmbeddings));
+  
+      // Add metadata for user and file
+      await collection.add({
+        ids,
+        documents: docs,
+        embeddings,
+        metadatas: docs.map(() => ({ userId, fileId })),
+      });
+  
+      console.log(`Documents added for User: ${userId}, File: ${fileId}`);
+    } catch (error) {
+      console.error("Error adding documents:", error);
+    }
+  };
+  
 
 // Function to query the most relevant chunk
-export const queryDocument = async (query, topK = 3) => {
-  try {
-    const collection = await getCollection();
-    const queryEmbedding = await getEmbeddings(query);
-
-    const results = await collection.query({
-      queryEmbeddings: [queryEmbedding],
-      nResults: topK,
-    });
-
-    console.log("Relevant Chunks:", results.documents);
-    return results.documents;
-  } catch (error) {
-    console.error("Error querying document:", error);
-  }
-};
-
+export const queryDocument = async (query, userId, fileId, topK = 3) => { 
+    try {
+      const collection = await getCollection();
+      const queryEmbedding = await getEmbeddings(query);
+  
+      // Query with filtering by metadata
+      const results = await collection.query({
+        queryEmbeddings: [queryEmbedding],
+        nResults: topK,
+        where: { $and: [{ userId }, { fileId }] }, // Filters results by user and file
+      });
+  
+      return results.documents;
+    } catch (error) {
+      console.log("Error querying document:", error.message);
+    }
+  };
+  
 // Function to get OpenAI/Groq embeddings
 async function getEmbeddings(text) {
     try {
@@ -97,17 +107,4 @@ export const listCollections = async () => {
 };
 
 
-const docs = [
-    "Aitrika likes abhi",
-    "Aitrika learns to code very fast",
-    
-  ];
-
-//   await addDocuments(docs);
-  
-// Function to delete documents from collection
-
-
-const res = await  getAllDocuments()
-console.log(res);
 
