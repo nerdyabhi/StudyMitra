@@ -1,7 +1,9 @@
 
 
 const JINA_API_KEY = process.env.JINA_API_KEY;
-
+import dotenv from 'dotenv';
+dotenv.config();
+import axios from "axios";
 async function getEmbeddings(text) {
     try {
         const response = await axios.post(
@@ -12,7 +14,7 @@ async function getEmbeddings(text) {
             },
             {
                 headers: {
-                    Authorization: `Bearer ${JINA_API_KEY}`,
+                    Authorization: `Bearer jina_ea564f4d374347908855fba8ae9694eetFb0vSUCWYKdc1EW6boz3zQdmts4`,
                     "Content-Type": "application/json"
                 }
             }
@@ -23,4 +25,9 @@ async function getEmbeddings(text) {
         return null;
     }
 }
+
+
+const res = await getEmbeddings("AItrika please do it ");
+console.log(res);
+
 export default getEmbeddings;

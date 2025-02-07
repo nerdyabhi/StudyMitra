@@ -66,3 +66,77 @@
 [32mINFO[0m:     [05-02-2025 23:04:26] Waiting for application startup.
 [32mINFO[0m:     [05-02-2025 23:04:26] Application startup complete.
 [32mINFO[0m:     [05-02-2025 23:04:26] Uvicorn running on [1mhttp://localhost:8000[0m (Press CTRL+C to quit)
+[33mWARNING[0m:  [07-02-2025 20:19:16] chroma_server_nofile is not supported on Windows. chroma_server_nofile will not be set.
+[32mINFO[0m:     [07-02-2025 20:19:17] Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+[36mDEBUG[0m:    [07-02-2025 20:19:17] Starting component System
+[36mDEBUG[0m:    [07-02-2025 20:19:17] Starting component OpenTelemetryClient
+[36mDEBUG[0m:    [07-02-2025 20:19:17] Starting component SqliteDB
+[36mDEBUG[0m:    [07-02-2025 20:19:17] Starting component SimpleQuotaEnforcer
+[36mDEBUG[0m:    [07-02-2025 20:19:17] Starting component Posthog
+[36mDEBUG[0m:    [07-02-2025 20:19:17] Starting component SimpleRateLimitEnforcer
+[36mDEBUG[0m:    [07-02-2025 20:19:17] Starting component LocalSegmentManager
+[36mDEBUG[0m:    [07-02-2025 20:19:17] Starting component LocalExecutor
+[36mDEBUG[0m:    [07-02-2025 20:19:17] Starting component SegmentAPI
+[36mDEBUG[0m:    [07-02-2025 20:19:17] Starting component SimpleAsyncRateLimitEnforcer
+[32mINFO[0m:     [07-02-2025 20:19:17] Started server process [[36m15068[0m]
+[32mINFO[0m:     [07-02-2025 20:19:17] Waiting for application startup.
+[32mINFO[0m:     [07-02-2025 20:19:17] Application startup complete.
+[32mINFO[0m:     [07-02-2025 20:19:17] Uvicorn running on [1mhttp://localhost:8000[0m (Press CTRL+C to quit)
+[32mINFO[0m:     [07-02-2025 20:23:33] ::1:52046 - "GET /api/v2/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:23:33] ::1:52047 - "GET /api/v2/tenants/default_tenant/databases/default_database HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:23:33] ::1:52046 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections HTTP/1.1" 200
+[36mDEBUG[0m:    [07-02-2025 20:23:43] Starting component PersistentLocalHnswSegment
+[32mINFO[0m:     [07-02-2025 20:23:43] ::1:52053 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/923c3280-df71-4399-8957-380b6a4ce88f/add HTTP/1.1" 201
+[32mINFO[0m:     [07-02-2025 20:23:44] ::1:52053 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/923c3280-df71-4399-8957-380b6a4ce88f/query HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:24:10] ::1:52063 - "GET /api/v2/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:24:10] ::1:52064 - "GET /api/v2/tenants/default_tenant/databases/default_database HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:24:10] ::1:52063 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections HTTP/1.1" 409
+[32mINFO[0m:     [07-02-2025 20:24:22] ::1:52065 - "GET /api/v2/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:24:22] ::1:52066 - "GET /api/v2/tenants/default_tenant/databases/default_database HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:24:22] ::1:52065 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections HTTP/1.1" 409
+[32mINFO[0m:     [07-02-2025 20:24:47] ::1:52084 - "GET /api/v2/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:24:47] ::1:52085 - "GET /api/v2/tenants/default_tenant/databases/default_database HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:24:47] ::1:52084 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections HTTP/1.1" 409
+[32mINFO[0m:     [07-02-2025 20:35:40] ::1:52163 - "GET /api/v2/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:35:40] ::1:52164 - "GET /api/v2/tenants/default_tenant/databases/default_database HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:35:40] ::1:52163 - "GET /api/v2/tenants/default_tenant/databases/default_database/collections HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:35:57] ::1:52165 - "GET /api/v2/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:35:58] ::1:52166 - "GET /api/v2/tenants/default_tenant/databases/default_database HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:35:58] ::1:52165 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections HTTP/1.1" 200
+[36mDEBUG[0m:    [07-02-2025 20:35:58] Starting component PersistentLocalHnswSegment
+[32mINFO[0m:     [07-02-2025 20:35:58] ::1:52165 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/2ce72c31-02e5-45da-841e-e0d62e74b777/add HTTP/1.1" 201
+[32mINFO[0m:     [07-02-2025 20:35:59] ::1:52165 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/2ce72c31-02e5-45da-841e-e0d62e74b777/query HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:49:08] ::1:52252 - "GET /api/v2/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:49:08] ::1:52253 - "GET /api/v2/tenants/default_tenant/databases/default_database HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:49:08] ::1:52252 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:50:00] ::1:52262 - "GET /api/v2/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:50:00] ::1:52263 - "GET /api/v2/tenants/default_tenant/databases/default_database HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 20:50:00] ::1:52262 - "GET /api/v2/tenants/default_tenant/databases/default_database/collections HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 21:11:14] ::1:52429 - "GET /api/v2/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 21:11:14] ::1:52430 - "GET /api/v2/tenants/default_tenant/databases/default_database HTTP/1.1" 200
+[36mDEBUG[0m:    [07-02-2025 21:11:14] Collection study_mitra_docs already exists, returning existing collection.
+[32mINFO[0m:     [07-02-2025 21:11:14] ::1:52429 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections HTTP/1.1" 200
+[36mDEBUG[0m:    [07-02-2025 21:11:16] Starting component PersistentLocalHnswSegment
+[32mINFO[0m:     [07-02-2025 21:11:16] ::1:52429 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/f541cfd9-74cb-4241-8226-f285dc2b9789/add HTTP/1.1" 201
+[32mINFO[0m:     [07-02-2025 21:12:02] ::1:52441 - "GET /api/v2/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 21:12:03] ::1:52442 - "GET /api/v2/tenants/default_tenant/databases/default_database HTTP/1.1" 200
+[36mDEBUG[0m:    [07-02-2025 21:12:03] Collection study_mitra_docs already exists, returning existing collection.
+[32mINFO[0m:     [07-02-2025 21:12:03] ::1:52441 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 21:12:04] ::1:52441 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/f541cfd9-74cb-4241-8226-f285dc2b9789/add HTTP/1.1" 201
+[36mDEBUG[0m:    [07-02-2025 21:12:04] Collection study_mitra_docs already exists, returning existing collection.
+[32mINFO[0m:     [07-02-2025 21:12:04] ::1:52442 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 21:12:05] ::1:52441 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/f541cfd9-74cb-4241-8226-f285dc2b9789/query HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 21:14:30] ::1:52466 - "GET /api/v2/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 21:14:30] ::1:52467 - "GET /api/v2/tenants/default_tenant/databases/default_database HTTP/1.1" 200
+[36mDEBUG[0m:    [07-02-2025 21:14:30] Collection study_mitra_docs already exists, returning existing collection.
+[32mINFO[0m:     [07-02-2025 21:14:30] ::1:52466 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 21:14:31] ::1:52466 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/f541cfd9-74cb-4241-8226-f285dc2b9789/add HTTP/1.1" 201
+[32mINFO[0m:     [07-02-2025 21:14:43] ::1:52471 - "GET /api/v2/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 21:14:43] ::1:52472 - "GET /api/v2/tenants/default_tenant/databases/default_database HTTP/1.1" 200
+[36mDEBUG[0m:    [07-02-2025 21:14:43] Collection study_mitra_docs already exists, returning existing collection.
+[32mINFO[0m:     [07-02-2025 21:14:43] ::1:52471 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 21:14:45] ::1:52471 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections/f541cfd9-74cb-4241-8226-f285dc2b9789/query HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 21:19:39] ::1:52513 - "GET /api/v2/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [07-02-2025 21:19:39] ::1:52514 - "GET /api/v2/tenants/default_tenant/databases/default_database HTTP/1.1" 200
+[36mDEBUG[0m:    [07-02-2025 21:19:39] Collection study_mitra_docs already exists, returning existing collection.
+[32mINFO[0m:     [07-02-2025 21:19:39] ::1:52513 - "POST /api/v2/tenants/default_tenant/databases/default_database/collections HTTP/1.1" 200
